@@ -1,6 +1,9 @@
 /**
  * battery-bar-card — Custom Lovelace card voor Home Assistant
- * Versie: 1.1.0
+ * Versie: 1.2.0
+ *
+ * Wijzigingen v1.2.0:
+ *   - Nieuw: font_weight optie voor tekstdikte (bijv. 400=normaal, 700=bold, standaard: 800)
  *
  * Wijzigingen v1.1.0:
  *   - Nieuw: font_color optie voor vaste tekstkleur (bijv. "#ffffff" voor wit)
@@ -12,6 +15,7 @@
  *   height:            hoogte van de batterij in px (standaard: 65)
  *   font_size:         grootte van het percentage getal (standaard: 30)
  *   font_color:        vaste kleur voor het percentage (bijv. "#ffffff") — overschrijft automatische kleur
+ *   font_weight:       dikte van het percentage getal (bijv. 400, 600, 700, 800) standaard: 800
  *   low_threshold:     drempel voor rood (standaard: 15)
  *   mid_threshold:     drempel voor oranje (standaard: 30)
  *   show_name:         naam boven elke batterij tonen (standaard: false)
@@ -43,7 +47,8 @@ class BatteryBarCard extends HTMLElement {
       segments:      config.segments      ?? 10,
       height:        config.height        ?? 65,
       font_size:     config.font_size     ?? 30,
-      font_color:    config.font_color    ?? null,   // nieuw in v1.1.0
+      font_color:    config.font_color    ?? null,
+      font_weight:   config.font_weight   ?? 800,
       low_threshold: config.low_threshold ?? 15,
       mid_threshold: config.mid_threshold ?? 30,
       show_name:     config.show_name     ?? false,
@@ -176,11 +181,11 @@ class BatteryBarCard extends HTMLElement {
         </div>`;
       }
 
-      const info   = this._levelInfo(pct, cfg);
-      const isLow  = pct <= cfg.low_threshold;
+      const info    = this._levelInfo(pct, cfg);
+      const isLow   = pct <= cfg.low_threshold;
       const pctAnim = isLow ? 'blink-txt' : '';
 
-      // font_color: gebruik vaste kleur als opgegeven, anders automatisch op basis van niveau
+      // font_color: gebruik vaste kleur indien opgegeven, anders automatisch
       const textColor = cfg.font_color ?? info.pctColor;
       const glowColor = cfg.font_color ?? info.pctColor;
 
@@ -206,7 +211,6 @@ class BatteryBarCard extends HTMLElement {
     this.shadowRoot.innerHTML = `
       <style>
         :host { display: block; }
-
         ha-card {
           background: linear-gradient(160deg, #0a1628 0%, #060e1a 100%);
           border: 1px solid #0e2a45;
@@ -216,7 +220,6 @@ class BatteryBarCard extends HTMLElement {
                       inset 0 1px 0 rgba(255,255,255,0.04);
           overflow: hidden;
         }
-
         .card-header {
           font-size: 11px;
           font-weight: 700;
@@ -228,35 +231,30 @@ class BatteryBarCard extends HTMLElement {
           padding-bottom: 10px;
           border-bottom: 1px solid #0e2a45;
         }
-
         .batt-row { margin-bottom: 8px; }
         .batt-row:last-child { margin-bottom: 0; }
-
         .batt-name {
           font-size: 11px;
           color: #5a7a9a;
           margin-bottom: 4px;
           padding-left: 2px;
         }
-
         .batt-wrap {
           position: relative;
           width: 100%;
         }
-
         .pct-label {
           position: absolute;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          font-weight: 800;
+          font-weight: ${cfg.font_weight};
           font-variant-numeric: tabular-nums;
           letter-spacing: -0.5px;
           pointer-events: none;
           white-space: nowrap;
           font-family: 'Segoe UI', system-ui, sans-serif;
         }
-
         .unavailable {
           display: flex;
           align-items: center;
@@ -266,21 +264,16 @@ class BatteryBarCard extends HTMLElement {
           font-size: 12px;
           font-style: italic;
         }
-
         @keyframes blinkSeg {
           0%, 100% { opacity: 1; }
           50%       { opacity: 0.08; }
         }
-
-        .blink-txt {
-          animation: blinkTxt 1.1s ease-in-out infinite;
-        }
+        .blink-txt { animation: blinkTxt 1.1s ease-in-out infinite; }
         @keyframes blinkTxt {
           0%, 100% { opacity: 1; }
           50%       { opacity: 0.2; }
         }
       </style>
-
       <ha-card>
         ${cfg.title ? `<div class="card-header">⚡ ${cfg.title}</div>` : ''}
         ${rows}
@@ -297,6 +290,7 @@ class BatteryBarCard extends HTMLElement {
       height: 65,
       font_size: 30,
       font_color: null,
+      font_weight: 800,
       segments: 10,
       low_threshold: 15,
       mid_threshold: 30,
