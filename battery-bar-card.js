@@ -1,14 +1,17 @@
 /**
  * battery-bar-card — Custom Lovelace card voor Home Assistant
- * Toont een of meerdere batterij-entiteiten als horizontale balk
- * met gesegmenteerde vulling en groot percentage getal.
+ * Versie: 1.1.0
+ *
+ * Wijzigingen v1.1.0:
+ *   - Nieuw: font_color optie voor vaste tekstkleur (bijv. "#ffffff" voor wit)
  *
  * Configuratie-opties:
- *   entities:          lijst van entity_id's (sensor met battery_class of 0-100 state)
+ *   entities:          lijst van entity_id's
  *   title:             optionele koptekst boven de kaart
  *   segments:          aantal segmenten (standaard: 10)
  *   height:            hoogte van de batterij in px (standaard: 65)
  *   font_size:         grootte van het percentage getal (standaard: 30)
+ *   font_color:        vaste kleur voor het percentage (bijv. "#ffffff") — overschrijft automatische kleur
  *   low_threshold:     drempel voor rood (standaard: 15)
  *   mid_threshold:     drempel voor oranje (standaard: 30)
  *   show_name:         naam boven elke batterij tonen (standaard: false)
@@ -26,7 +29,6 @@ const SEG_COLORS_MID = [
 
 class BatteryBarCard extends HTMLElement {
 
-  // ── Lifecycle ──────────────────────────────────────────────────
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
@@ -41,12 +43,11 @@ class BatteryBarCard extends HTMLElement {
       segments:      config.segments      ?? 10,
       height:        config.height        ?? 65,
       font_size:     config.font_size     ?? 30,
+      font_color:    config.font_color    ?? null,   // nieuw in v1.1.0
       low_threshold: config.low_threshold ?? 15,
       mid_threshold: config.mid_threshold ?? 30,
       show_name:     config.show_name     ?? false,
-      entities: config.entities
-        ? config.entities
-        : [config.entity],
+      entities: config.entities ? config.entities : [config.entity],
     };
     this._render();
   }
@@ -56,15 +57,11 @@ class BatteryBarCard extends HTMLElement {
     this._render();
   }
 
-  // ── Helpers ────────────────────────────────────────────────────
   _getPct(entityId) {
     const state = this._hass?.states[entityId];
     if (!state) return null;
-    // Probeer state als getal, anders battery_level attribuut
     let val = parseFloat(state.state);
-    if (isNaN(val)) {
-      val = parseFloat(state.attributes?.battery_level);
-    }
+    if (isNaN(val)) val = parseFloat(state.attributes?.battery_level);
     if (isNaN(val)) return null;
     return Math.min(100, Math.max(0, Math.round(val)));
   }
@@ -84,7 +81,6 @@ class BatteryBarCard extends HTMLElement {
     return { pctColor: '#ff3355', segColors: Array(10).fill('#ff2244') };
   }
 
-  // ── SVG batterij ───────────────────────────────────────────────
   _makeSVG(pct, uid, cfg) {
     const isLow      = pct <= cfg.low_threshold;
     const SEGS       = cfg.segments;
@@ -98,7 +94,6 @@ class BatteryBarCard extends HTMLElement {
     const gap    = 3.5;
     const segW   = (innerW - gap * (SEGS - 1)) / SEGS;
 
-    // Normaliseer segColors altijd naar SEGS items
     const colors = info.segColors.length >= SEGS
       ? info.segColors.slice(0, SEGS)
       : Array.from({ length: SEGS }, (_, i) =>
@@ -151,24 +146,19 @@ class BatteryBarCard extends HTMLElement {
             <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
           </linearGradient>
           <filter id="shd_${uid}">
-            <feDropShadow dx="0" dy="2" stdDeviation="3"
-              flood-color="rgba(0,0,0,0.6)"/>
+            <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="rgba(0,0,0,0.6)"/>
           </filter>
         </defs>
-
         <rect x="0" y="0" width="${W}" height="${H}" rx="${RX}" ry="${RX}"
           fill="transparent" filter="url(#shd_${uid})"/>
         <rect x="0" y="0" width="${W}" height="${H}" rx="${RX}" ry="${RX}"
           fill="url(#bg_${uid})" stroke="url(#str_${uid})" stroke-width="1.5"/>
-
         ${segsHtml}
-
         <rect x="2" y="1.5" width="${W-4}" height="${H*0.26}"
           rx="${RX-1}" ry="${RX-1}" fill="url(#gls_${uid})"/>
       </svg>`;
   }
 
-  // ── Render ─────────────────────────────────────────────────────
   _render() {
     if (!this._config) return;
     const cfg = this._config;
@@ -190,14 +180,19 @@ class BatteryBarCard extends HTMLElement {
       const isLow  = pct <= cfg.low_threshold;
       const pctAnim = isLow ? 'blink-txt' : '';
 
+      // font_color: gebruik vaste kleur als opgegeven, anders automatisch op basis van niveau
+      const textColor = cfg.font_color ?? info.pctColor;
+      const glowColor = cfg.font_color ?? info.pctColor;
+
       return `
         <div class="batt-row">
           ${cfg.show_name ? `<div class="batt-name">${name}</div>` : ''}
           <div class="batt-wrap" style="height:${cfg.height}px;">
             ${this._makeSVG(pct, uid, cfg)}
             <div class="pct-label ${pctAnim}"
-              style="font-size:${cfg.font_size}px; color:${info.pctColor};
-                     text-shadow: 0 0 8px ${info.pctColor},
+              style="font-size:${cfg.font_size}px;
+                     color:${textColor};
+                     text-shadow: 0 0 8px ${glowColor},
                        0 1px 4px rgba(0,0,0,0.95),
                        0 -1px 4px rgba(0,0,0,0.95),
                        1px 0 4px rgba(0,0,0,0.95),
@@ -234,9 +229,7 @@ class BatteryBarCard extends HTMLElement {
           border-bottom: 1px solid #0e2a45;
         }
 
-        .batt-row {
-          margin-bottom: 8px;
-        }
+        .batt-row { margin-bottom: 8px; }
         .batt-row:last-child { margin-bottom: 0; }
 
         .batt-name {
@@ -294,17 +287,16 @@ class BatteryBarCard extends HTMLElement {
       </ha-card>`;
   }
 
-  // ── Card grootte hint voor Lovelace ───────────────────────────
   getCardSize() {
     return Math.ceil(this._config?.entities?.length ?? 1);
   }
 
   static getStubConfig() {
     return {
-      title: 'Apparaat Batterijen',
       entities: ['sensor.mijn_batterij'],
       height: 65,
       font_size: 30,
+      font_color: null,
       segments: 10,
       low_threshold: 15,
       mid_threshold: 30,
