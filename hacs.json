@@ -1,0 +1,7 @@
+{
+  "name": "Battery Bar Card",
+  "description": "Horizontale batterij balk met gesegmenteerde vulling en groot percentage getal — voor Home Assistant Lovelace.",
+  "render_readme": true,
+  "homeassistant": "2023.0.0",
+  "filename": "battery-bar-card.js"
+}
