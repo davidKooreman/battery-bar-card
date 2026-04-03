@@ -63,7 +63,7 @@ decimals: 1
 | Optie           | Type    | Standaard | Beschrijving                                      |
 |-----------------|---------|-----------|---------------------------------------------------|
 | `entities`      | lijst   | verplicht | Lijst van battery sensor entity_id's              |
-| `entity`        | string  | Ã¢ÂÂ         | Enkele entity (alternatief voor `entities`)       |
+| `entity`        | string  |           | Enkele entity (alternatief voor `entities`)       |
 | `title`         | string  | geen      | Koptekst boven de kaart                           |
 | `height`        | number  | `65`      | Hoogte van de batterij balk in pixels             |
 | `font_size`     | number  | `30`      | Grootte van het percentage getal in pixels        |
@@ -79,9 +79,9 @@ decimals: 1
 
 | Niveau           | Kleur        | Gedrag              |
 |------------------|--------------|---------------------|
-| > mid_threshold  | Ã°ÂÂÂµ Cyaan blauw | Statisch            |
-| > low_threshold  | Ã°ÂÂÂ¡ Oranje/geel | Statisch            |
-| Ã¢ÂÂ¤ low_threshold  | Ã°ÂÂÂ´ Rood        | Knippert            |
+| > mid_threshold  | Cyaan blauw | Statisch            |
+| > low_threshold  | Oranje/geel | Statisch            |
+| > low_threshold  | Rood        | Knippert            |
 
 ## Compatibiliteit
 
