@@ -1,6 +1,10 @@
 /**
  * battery-bar-card â Custom Lovelace card voor Home Assistant
- * Versie: 1.4.0
+ * Versie: 1.5.0
+ *
+ * Wijzigingen v1.5.0:
+ *   - Nieuw: title_size optie voor de lettergrootte van de titel (standaard: 11)
+ *   - Nieuw: title_color optie voor de kleur van de titel (standaard: #00d4ff)
  *
  * Wijzigingen v1.4.0:
  *   - Nieuw: decimals optie voor het tonen van decimalen in het percentage (standaard: 0)
@@ -17,6 +21,8 @@
  * Configuratie-opties:
  *   entities:          lijst van entity_id's
  *   title:             optionele koptekst boven de kaart
+ *   title_size:      grootte van de titel in px (standaard: 11)
+ *   title_color:     kleur van de titel (standaard: #00d4ff)
  *   segments:          aantal segmenten (standaard: 10)
  *   height:            hoogte van de batterij in px (standaard: 65)
  *   font_size:         grootte van het percentage getal (standaard: 30)
@@ -51,6 +57,8 @@ class BatteryBarCard extends HTMLElement {
     }
     this._config = {
       title:         config.title         ?? null,
+      title_size: config.title_size ?? 11,
+      title_color: config.title_color ?? '#00d4ff',
       segments:      config.segments      ?? 10,
       height:        config.height        ?? 65,
       font_size:     config.font_size     ?? 30,
@@ -230,12 +238,12 @@ class BatteryBarCard extends HTMLElement {
           overflow: hidden;
         }
         .card-header {
-          font-size: 11px;
+          font-size: ${cfg.title_size}px;
           font-weight: 700;
           letter-spacing: 2px;
           text-transform: uppercase;
-          color: #00d4ff;
-          text-shadow: 0 0 12px rgba(0,212,255,0.5);
+          color: ${cfg.title_color};
+          text-shadow: 0 0 12px ${cfg.title_color}80;
           margin-bottom: 14px;
           padding-bottom: 10px;
           border-bottom: 1px solid #0e2a45;
