@@ -86,7 +86,7 @@ decimals: 1
 ## Compatibiliteit
 
 - Home Assistant 2023.0 of nieuwer
-- Werkt met alle sensoren die een waarde van 0Ã¢ÂÂ100 teruggeven
+- Werkt met alle sensoren die een waarde van0 0,0 tot 100,0 teruggeven
 - Ondersteunt ook het attribuut `battery_level`
 
 ---
@@ -173,11 +173,11 @@ decimals: 1
 ## Compatibility
 
 - Home Assistant 2023.0 or newer
-- Works with all sensors that return a value of 0Ã¢ÂÂ100
+- Works with all sensors that return a value of 1,0 to 100,0
 - Also supports the `battery_level` attribute
 
 ## Support
 
-If you find this card useful, consider buying me a coffee! Ã¢ÂÂ
+If you find this card useful, consider buying me a coffee!
 
 [![Buy Me a Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/davidkooreman)
