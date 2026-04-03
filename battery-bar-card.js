@@ -1,6 +1,9 @@
 /**
- * battery-bar-card — Custom Lovelace card voor Home Assistant
- * Versie: 1.3.0
+ * battery-bar-card â Custom Lovelace card voor Home Assistant
+ * Versie: 1.4.0
+ *
+ * Wijzigingen v1.4.0:
+ *   - Nieuw: decimals optie voor het tonen van decimalen in het percentage (standaard: 0)
  *
  * Wijzigingen v1.3.0:
  *   - Nieuw: tap_action ondersteuning voor navigatie bij klikken
@@ -17,11 +20,12 @@
  *   segments:          aantal segmenten (standaard: 10)
  *   height:            hoogte van de batterij in px (standaard: 65)
  *   font_size:         grootte van het percentage getal (standaard: 30)
- *   font_color:        vaste kleur voor het percentage (bijv. "#ffffff") — overschrijft automatische kleur
+ *   font_color:        vaste kleur voor het percentage (bijv. "#ffffff") â overschrijft automatische kleur
  *   font_weight:       dikte van het percentage getal (bijv. 400, 600, 700, 800) standaard: 800
  *   low_threshold:     drempel voor rood (standaard: 15)
  *   mid_threshold:     drempel voor oranje (standaard: 30)
  *   show_name:         naam boven elke batterij tonen (standaard: false)
+ *   decimals:          aantal decimalen voor het percentage (0, 1 of 2; standaard: 0)
  */
 
 const SEG_COLORS_HIGH = [
@@ -43,7 +47,7 @@ class BatteryBarCard extends HTMLElement {
 
   setConfig(config) {
     if (!config.entities && !config.entity) {
-      throw new Error('battery-bar-card: geef minimaal één entity op');
+      throw new Error('battery-bar-card: geef minimaal Ã©Ã©n entity op');
     }
     this._config = {
       title:         config.title         ?? null,
@@ -56,6 +60,7 @@ class BatteryBarCard extends HTMLElement {
       low_threshold: config.low_threshold ?? 15,
       mid_threshold: config.mid_threshold ?? 30,
       show_name:     config.show_name     ?? false,
+      decimals:      config.decimals      ?? 0,
       entities: config.entities ? config.entities : [config.entity],
     };
     this._render();
@@ -72,7 +77,7 @@ class BatteryBarCard extends HTMLElement {
     let val = parseFloat(state.state);
     if (isNaN(val)) val = parseFloat(state.attributes?.battery_level);
     if (isNaN(val)) return null;
-    return Math.min(100, Math.max(0, Math.round(val)));
+    return Math.min(100, Math.max(0, val));
   }
 
   _getName(entityId) {
@@ -206,7 +211,7 @@ class BatteryBarCard extends HTMLElement {
                        0 -1px 4px rgba(0,0,0,0.95),
                        1px 0 4px rgba(0,0,0,0.95),
                        -1px 0 4px rgba(0,0,0,0.95);">
-              ${pct}%
+              ${pct.toFixed(cfg.decimals)}%
             </div>
           </div>
         </div>`;
@@ -279,7 +284,7 @@ class BatteryBarCard extends HTMLElement {
         }
       </style>
       <ha-card>
-        ${cfg.title ? `<div class="card-header">⚡ ${cfg.title}</div>` : ''}
+        ${cfg.title ? `<div class="card-header">â¡ ${cfg.title}</div>` : ''}
         ${rows}
       </ha-card>`;
   }
