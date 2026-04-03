@@ -33,11 +33,10 @@
  *   show_name:         naam boven elke batterij tonen (standaard: false)
  *   decimals:          aantal decimalen voor het percentage (0, 1 of 2; standaard: 0)
  */
-
 const SEG_COLORS_HIGH = [
-  '#003fa3','#0052cc','#0068f5',
-  '#0088ff','#00aaff','#00c4ff',
-  '#00d4ff','#00e0ff','#40eaff','#80f4ff',
+  '#003d42','#004f55','#006068',
+  '#00737b','#00838f','#0093a0',
+  '#00a3b0','#00b3c0','#00c3d0','#00d0db',
 ];
 const SEG_COLORS_MID = [
   '#7a3a00','#a05000','#c06800','#e08000',
