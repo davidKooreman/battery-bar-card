@@ -1,7 +1,8 @@
 # Battery Bar Card
 
 Een custom Lovelace card voor Home Assistant die batterijniveaus weergeeft als een horizontale gesegmenteerde balk met een groot percentage getal er overheen.
-
+![Preview](preview.png)
+![Preview 2](preview2.png)
 ## Installatie via HACS
 
 1. Ga in Home Assistant naar **HACS → Frontend**
