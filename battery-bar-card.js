@@ -284,7 +284,7 @@ class BatteryBarCard extends HTMLElement {
         }
       </style>
       <ha-card>
-        ${cfg.title ? `<div class="card-header">â¡ ${cfg.title}</div>` : ''}
+        ${cfg.title ? `<div class="card-header"> ${cfg.title}</div>` : ''}
         ${rows}
       </ha-card>`;
   }
