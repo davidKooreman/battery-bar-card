@@ -91,14 +91,14 @@ decimals: 1
 
 ---
 
-# Battery Bar Card Ã¢ÂÂ English
+# Battery Bar Card English
 
 A custom Lovelace card for Home Assistant that displays battery levels as a horizontal segmented bar with a large percentage number overlaid on top.
 
 ## Installation via HACS
 
-1. In Home Assistant, go to **HACS Ã¢ÂÂ Frontend**
-2. Click the three dots in the top right Ã¢ÂÂ **Custom repositories**
+1. In Home Assistant, go to **HACS Frontend**
+2. Click the three dots in the top right **Custom repositories**
 3. Enter the repository URL and select category **Lovelace**
 4. Click **Add**, then search for **Battery Bar Card** and install
 5. Restart Home Assistant or clear your browser cache
@@ -150,7 +150,7 @@ decimals: 1
 | Option          | Type    | Default   | Description                                        |
 |-----------------|---------|-----------|----------------------------------------------------|
 | `entities`      | list    | required  | List of battery sensor entity_id's                 |
-| `entity`        | string  | Ã¢ÂÂ         | Single entity (alternative to `entities`)          |
+| `entity`        | string  |           | Single entity (alternative to `entities`)          |
 | `title`         | string  | none      | Header text above the card                         |
 | `height`        | number  | `65`      | Height of the battery bar in pixels                |
 | `font_size`     | number  | `30`      | Size of the percentage number in pixels            |
@@ -166,9 +166,9 @@ decimals: 1
 
 | Level            | Color          | Behavior            |
 |------------------|----------------|---------------------|
-| > mid_threshold  | Ã°ÂÂÂµ Cyan blue   | Static              |
-| > low_threshold  | Ã°ÂÂÂ¡ Orange/yellow | Static            |
-| Ã¢ÂÂ¤ low_threshold  | Ã°ÂÂÂ´ Red         | Blinking            |
+| > mid_threshold  | Cyan blue   | Static              |
+| > low_threshold  | Oange/yellow | Static            |
+| > low_threshold  | Red         | Blinking            |
 
 ## Compatibility
 
