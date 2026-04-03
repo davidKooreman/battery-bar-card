@@ -6,11 +6,12 @@ Een custom Lovelace card voor Home Assistant die batterijniveaus weergeeft als e
 
 ![Preview](preview.png)
 ![Preview 2](preview2.png)
+![Preview 3](preview3.png)
 
 ## Installatie via HACS
 
-1. Ga in Home Assistant naar **HACS â Frontend**
-2. Klik op de drie puntjes rechtsboven â **Custom repositories**
+1. Ga in Home Assistant naar **HACS Ã¢ÂÂ Frontend**
+2. Klik op de drie puntjes rechtsboven Ã¢ÂÂ **Custom repositories**
 3. Voer de repository URL in en kies categorie **Lovelace**
 4. Klik **Add**, zoek daarna naar **Battery Bar Card** en installeer
 5. Herstart Home Assistant of clear de browsercache
@@ -62,7 +63,7 @@ decimals: 1
 | Optie           | Type    | Standaard | Beschrijving                                      |
 |-----------------|---------|-----------|---------------------------------------------------|
 | `entities`      | lijst   | verplicht | Lijst van battery sensor entity_id's              |
-| `entity`        | string  | â         | Enkele entity (alternatief voor `entities`)       |
+| `entity`        | string  | Ã¢ÂÂ         | Enkele entity (alternatief voor `entities`)       |
 | `title`         | string  | geen      | Koptekst boven de kaart                           |
 | `height`        | number  | `65`      | Hoogte van de batterij balk in pixels             |
 | `font_size`     | number  | `30`      | Grootte van het percentage getal in pixels        |
@@ -78,26 +79,26 @@ decimals: 1
 
 | Niveau           | Kleur        | Gedrag              |
 |------------------|--------------|---------------------|
-| > mid_threshold  | ðµ Cyaan blauw | Statisch            |
-| > low_threshold  | ð¡ Oranje/geel | Statisch            |
-| â¤ low_threshold  | ð´ Rood        | Knippert            |
+| > mid_threshold  | Ã°ÂÂÂµ Cyaan blauw | Statisch            |
+| > low_threshold  | Ã°ÂÂÂ¡ Oranje/geel | Statisch            |
+| Ã¢ÂÂ¤ low_threshold  | Ã°ÂÂÂ´ Rood        | Knippert            |
 
 ## Compatibiliteit
 
 - Home Assistant 2023.0 of nieuwer
-- Werkt met alle sensoren die een waarde van 0â100 teruggeven
+- Werkt met alle sensoren die een waarde van 0Ã¢ÂÂ100 teruggeven
 - Ondersteunt ook het attribuut `battery_level`
 
 ---
 
-# Battery Bar Card â English
+# Battery Bar Card Ã¢ÂÂ English
 
 A custom Lovelace card for Home Assistant that displays battery levels as a horizontal segmented bar with a large percentage number overlaid on top.
 
 ## Installation via HACS
 
-1. In Home Assistant, go to **HACS â Frontend**
-2. Click the three dots in the top right â **Custom repositories**
+1. In Home Assistant, go to **HACS Ã¢ÂÂ Frontend**
+2. Click the three dots in the top right Ã¢ÂÂ **Custom repositories**
 3. Enter the repository URL and select category **Lovelace**
 4. Click **Add**, then search for **Battery Bar Card** and install
 5. Restart Home Assistant or clear your browser cache
@@ -149,7 +150,7 @@ decimals: 1
 | Option          | Type    | Default   | Description                                        |
 |-----------------|---------|-----------|----------------------------------------------------|
 | `entities`      | list    | required  | List of battery sensor entity_id's                 |
-| `entity`        | string  | â         | Single entity (alternative to `entities`)          |
+| `entity`        | string  | Ã¢ÂÂ         | Single entity (alternative to `entities`)          |
 | `title`         | string  | none      | Header text above the card                         |
 | `height`        | number  | `65`      | Height of the battery bar in pixels                |
 | `font_size`     | number  | `30`      | Size of the percentage number in pixels            |
@@ -165,18 +166,18 @@ decimals: 1
 
 | Level            | Color          | Behavior            |
 |------------------|----------------|---------------------|
-| > mid_threshold  | ðµ Cyan blue   | Static              |
-| > low_threshold  | ð¡ Orange/yellow | Static            |
-| â¤ low_threshold  | ð´ Red         | Blinking            |
+| > mid_threshold  | Ã°ÂÂÂµ Cyan blue   | Static              |
+| > low_threshold  | Ã°ÂÂÂ¡ Orange/yellow | Static            |
+| Ã¢ÂÂ¤ low_threshold  | Ã°ÂÂÂ´ Red         | Blinking            |
 
 ## Compatibility
 
 - Home Assistant 2023.0 or newer
-- Works with all sensors that return a value of 0â100
+- Works with all sensors that return a value of 0Ã¢ÂÂ100
 - Also supports the `battery_level` attribute
 
 ## Support
 
-If you find this card useful, consider buying me a coffee! â
+If you find this card useful, consider buying me a coffee! Ã¢ÂÂ
 
 [![Buy Me a Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/davidkooreman)
