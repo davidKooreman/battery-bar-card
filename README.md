@@ -65,6 +65,8 @@ decimals: 1
 | `entities`      | lijst   | verplicht | Lijst van battery sensor entity_id's              |
 | `entity`        | string  |           | Enkele entity (alternatief voor `entities`)       |
 | `title`         | string  | geen      | Koptekst boven de kaart                           |
+| `title_size`    | number  | `11`      | Grootte van de titel in pixels                    |
+| `title_color`   | string  | `#00d4ff` | Kleur van de titel (bijv. "#ff0000")              |
 | `height`        | number  | `65`      | Hoogte van de batterij balk in pixels             |
 | `font_size`     | number  | `30`      | Grootte van het percentage getal in pixels        |
 | `font_color`   | string  | geen      | Vaste kleur voor het percentage tekst (bijv. `"#ffffff"`)  |
@@ -152,6 +154,8 @@ decimals: 1
 | `entities`      | list    | required  | List of battery sensor entity_id's                 |
 | `entity`        | string  |           | Single entity (alternative to `entities`)          |
 | `title`         | string  | none      | Header text above the card                         |
+| `title_size`    | number  | `11`      | Size of the title text in pixels                   |
+| `title_color`   | string  | `#00d4ff` | Color of the title text (e.g. "#ff0000")           |
 | `height`        | number  | `65`      | Height of the battery bar in pixels                |
 | `font_size`     | number  | `30`      | Size of the percentage number in pixels            |
 | `font_color`   | string  | none      | Fixed color for the percentage text (e.g. `"#ffffff"`)     |
