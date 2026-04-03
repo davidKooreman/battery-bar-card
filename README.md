@@ -9,8 +9,8 @@ Een custom Lovelace card voor Home Assistant die batterijniveaus weergeeft als e
 
 ## Installatie via HACS
 
-1. Ga in Home Assistant naar **HACS → Frontend**
-2. Klik op de drie puntjes rechtsboven → **Custom repositories**
+1. Ga in Home Assistant naar **HACS â Frontend**
+2. Klik op de drie puntjes rechtsboven â **Custom repositories**
 3. Voer de repository URL in en kies categorie **Lovelace**
 4. Klik **Add**, zoek daarna naar **Battery Bar Card** en installeer
 5. Herstart Home Assistant of clear de browsercache
@@ -62,10 +62,12 @@ decimals: 1
 | Optie           | Type    | Standaard | Beschrijving                                      |
 |-----------------|---------|-----------|---------------------------------------------------|
 | `entities`      | lijst   | verplicht | Lijst van battery sensor entity_id's              |
-| `entity`        | string  | —         | Enkele entity (alternatief voor `entities`)       |
+| `entity`        | string  | â         | Enkele entity (alternatief voor `entities`)       |
 | `title`         | string  | geen      | Koptekst boven de kaart                           |
 | `height`        | number  | `65`      | Hoogte van de batterij balk in pixels             |
 | `font_size`     | number  | `30`      | Grootte van het percentage getal in pixels        |
+| `font_color`   | string  | geen      | Vaste kleur voor het percentage tekst (bijv. `"#ffffff"`)  |
+| `font_weight`  | number  | `800`     | Dikte van het percentage getal (bijv. 400, 700, 800)       |
 | `segments`      | number  | `10`      | Aantal segmenten in de balk                       |
 | `low_threshold` | number  | `15`      | Drempel (%) voor rode kleur                       |
 | `mid_threshold` | number  | `30`      | Drempel (%) voor oranje/gele kleur                |
@@ -76,26 +78,26 @@ decimals: 1
 
 | Niveau           | Kleur        | Gedrag              |
 |------------------|--------------|---------------------|
-| > mid_threshold  | 🔵 Cyaan blauw | Statisch            |
-| > low_threshold  | 🟡 Oranje/geel | Statisch            |
-| ≤ low_threshold  | 🔴 Rood        | Knippert            |
+| > mid_threshold  | ðµ Cyaan blauw | Statisch            |
+| > low_threshold  | ð¡ Oranje/geel | Statisch            |
+| â¤ low_threshold  | ð´ Rood        | Knippert            |
 
 ## Compatibiliteit
 
 - Home Assistant 2023.0 of nieuwer
-- Werkt met alle sensoren die een waarde van 0–100 teruggeven
+- Werkt met alle sensoren die een waarde van 0â100 teruggeven
 - Ondersteunt ook het attribuut `battery_level`
 
 ---
 
-# Battery Bar Card — English
+# Battery Bar Card â English
 
 A custom Lovelace card for Home Assistant that displays battery levels as a horizontal segmented bar with a large percentage number overlaid on top.
 
 ## Installation via HACS
 
-1. In Home Assistant, go to **HACS → Frontend**
-2. Click the three dots in the top right → **Custom repositories**
+1. In Home Assistant, go to **HACS â Frontend**
+2. Click the three dots in the top right â **Custom repositories**
 3. Enter the repository URL and select category **Lovelace**
 4. Click **Add**, then search for **Battery Bar Card** and install
 5. Restart Home Assistant or clear your browser cache
@@ -147,10 +149,12 @@ decimals: 1
 | Option          | Type    | Default   | Description                                        |
 |-----------------|---------|-----------|----------------------------------------------------|
 | `entities`      | list    | required  | List of battery sensor entity_id's                 |
-| `entity`        | string  | —         | Single entity (alternative to `entities`)          |
+| `entity`        | string  | â         | Single entity (alternative to `entities`)          |
 | `title`         | string  | none      | Header text above the card                         |
 | `height`        | number  | `65`      | Height of the battery bar in pixels                |
 | `font_size`     | number  | `30`      | Size of the percentage number in pixels            |
+| `font_color`   | string  | none      | Fixed color for the percentage text (e.g. `"#ffffff"`)     |
+| `font_weight`  | number  | `800`     | Weight of the percentage number (e.g. 400, 700, 800)       |
 | `segments`      | number  | `10`      | Number of segments in the bar                      |
 | `low_threshold` | number  | `15`      | Threshold (%) for red color                        |
 | `mid_threshold` | number  | `30`      | Threshold (%) for orange/yellow color              |
@@ -161,18 +165,18 @@ decimals: 1
 
 | Level            | Color          | Behavior            |
 |------------------|----------------|---------------------|
-| > mid_threshold  | 🔵 Cyan blue   | Static              |
-| > low_threshold  | 🟡 Orange/yellow | Static            |
-| ≤ low_threshold  | 🔴 Red         | Blinking            |
+| > mid_threshold  | ðµ Cyan blue   | Static              |
+| > low_threshold  | ð¡ Orange/yellow | Static            |
+| â¤ low_threshold  | ð´ Red         | Blinking            |
 
 ## Compatibility
 
 - Home Assistant 2023.0 or newer
-- Works with all sensors that return a value of 0–100
+- Works with all sensors that return a value of 0â100
 - Also supports the `battery_level` attribute
 
 ## Support
 
-If you find this card useful, consider buying me a coffee! ☕
+If you find this card useful, consider buying me a coffee! â
 
 [![Buy Me a Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/davidkooreman)
