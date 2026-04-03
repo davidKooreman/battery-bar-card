@@ -10,8 +10,8 @@ Een custom Lovelace card voor Home Assistant die batterijniveaus weergeeft als e
 
 ## Installatie via HACS
 
-1. Ga in Home Assistant naar **HACS Ã¢ÂÂ Frontend**
-2. Klik op de drie puntjes rechtsboven Ã¢ÂÂ **Custom repositories**
+1. Ga in Home Assistant naar **HACS Frontend**
+2. Klik op de drie puntjes rechtsboven **Custom repositories**
 3. Voer de repository URL in en kies categorie **Lovelace**
 4. Klik **Add**, zoek daarna naar **Battery Bar Card** en installeer
 5. Herstart Home Assistant of clear de browsercache
