@@ -241,7 +241,6 @@ class BatteryBarCard extends HTMLElement {
           font-size: ${cfg.title_size}px;
           font-weight: 700;
           letter-spacing: 2px;
-          text-transform: uppercase;
           color: ${cfg.title_color};
           text-shadow: 0 0 12px ${cfg.title_color}80;
           margin-bottom: 14px;
