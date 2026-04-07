@@ -182,6 +182,6 @@ decimals: 1
 
 ## Support
 
-If you find this card useful, consider buying me a coffee!
+If you find this card useful, consider buying me a coffee! (fooi)
 
 [![Buy Me a Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/davidkooreman)
